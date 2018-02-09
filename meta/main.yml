@@ -1,0 +1,14 @@
+---
+galaxy_info:
+  author: Katerina Koukiou
+  description: Installs reportportal
+  license: "license MIT"
+  min_ansible_version: 1.8
+  platforms:
+    - name: EL
+      versions:
+        - all
+  galaxy_tags:
+    - reportportal
+    - testing
+    - analysis

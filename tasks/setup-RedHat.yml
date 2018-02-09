@@ -1,0 +1,23 @@
+---
+- name: Install docker
+  include_role:
+    name: shomatan.docker
+
+- name: Install docker compose
+  include_role:
+    name: shomatan.docker-compose
+
+- name: Download the latest compose descriptor example
+  get_url:
+    url: https://raw.githubusercontent.com/reportportal/reportportal/master/docker-compose.yml
+    dest: ./docker-compose.yml
+    mode: 0440
+
+- name: Start the reportportal.io application
+  command: "docker-compose -p reportportal up -d --force-recreate"
+
+- name: Check that you can connect (GET) to the application page and it returns a status 200
+  uri:
+    url: "{{ hostvars[inventory_hostname]:8080 }}"
+  retries: 10
+  delay: 3
